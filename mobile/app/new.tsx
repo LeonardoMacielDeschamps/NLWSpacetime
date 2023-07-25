@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { View, Switch, Text, TextInput } from 'react-native'
+import { View, Switch, Text, TextInput, ScrollView } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import { Link } from 'expo-router'
@@ -15,9 +15,9 @@ export default function NewMemory() {
   const [isPublic, setIsPublic] = useState(false)
 
   return (
-    <View
+    <ScrollView
       className="flex-1 px-8"
-      style={{ paddingBottom: bottom, paddingTop: top }}
+      contentContainerStyle={{ paddingBottom: bottom, paddingTop: top }}
     >
       <View className="mt-4 flex-row items-center justify-between">
         <NLWLogo />
@@ -60,7 +60,14 @@ export default function NewMemory() {
           placeholderTextColor={'#56565a'}
           placeholder="Fique livre para adicionar fotos, vídeos e relatos sobre essa experiência que você quer lembrar para sempre."
         />
+
+        <TouchableOpacity
+          activeOpacity={0.7}
+          className="mb-5 items-center rounded-full bg-green-500 px-5 py-2"
+        >
+          <Text className="font-alt text-sm uppercase text-black">Salvar</Text>
+        </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   )
 }
