@@ -12,7 +12,12 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 export default function NewMemory() {
   const { bottom, top } = useSafeAreaInsets()
 
+  const [content, setContent] = useState('')
   const [isPublic, setIsPublic] = useState(false)
+
+  function handleCreateMemory() {
+    console.log(content, isPublic)
+  }
 
   return (
     <ScrollView
@@ -37,7 +42,10 @@ export default function NewMemory() {
             trackColor={{ false: '#767577', true: '#5c3ea3' }}
             thumbColor={isPublic ? '#9b79ea' : '#9e9ea0'}
           />
-          <Text className="font-body text-base text-gray-200">
+          <Text
+            onPress={() => setIsPublic(!isPublic)}
+            className="font-body text-base text-gray-200"
+          >
             Tornar memória pública
           </Text>
         </View>
@@ -56,14 +64,18 @@ export default function NewMemory() {
 
         <TextInput
           multiline
+          value={content}
+          onChangeText={setContent}
           className="font-body text-lg text-gray-50"
           placeholderTextColor={'#56565a'}
           placeholder="Fique livre para adicionar fotos, vídeos e relatos sobre essa experiência que você quer lembrar para sempre."
+          style={{ textAlignVertical: 'top' }}
         />
 
         <TouchableOpacity
+          onPress={handleCreateMemory}
           activeOpacity={0.7}
-          className="mb-5 items-center rounded-full bg-green-500 px-5 py-2"
+          className="mb-5 items-center self-end rounded-full bg-green-500 px-5 py-2"
         >
           <Text className="font-alt text-sm uppercase text-black">Salvar</Text>
         </TouchableOpacity>
