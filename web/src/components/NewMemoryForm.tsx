@@ -19,8 +19,7 @@ export function NewMemoryForm() {
 
     let coverUrl = ''
 
-    if (fileToUpload && fileToUpload.length) {
-      console.log(fileToUpload)
+    if (fileToUpload) {
       const uploadFormData = new FormData()
       uploadFormData.set('file', fileToUpload)
 
@@ -45,6 +44,7 @@ export function NewMemoryForm() {
 
     router.push('/')
   }
+
   return (
     <form onSubmit={handleCreateMemory} className="flex flex-1 flex-col gap-2">
       <div className="flex items-center gap-4">
